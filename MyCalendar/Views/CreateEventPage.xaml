@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:custom="clr-namespace:MyCalendar.Custom"
+             xmlns:resx="clr-namespace:MyCalendar.Resx"
+             mc:Ignorable="d"
+             x:Class="MyCalendar.Views.CreateEventPage"
+             Title="{Binding PageTitle}">
+
+    <AbsoluteLayout>
+
+        <ScrollView AbsoluteLayout.LayoutBounds="0, 0, 1, 0.93" AbsoluteLayout.LayoutFlags="All" HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">
+            <StackLayout Padding="0,10,0,0" Spacing="10">
+
+                <StackLayout>
+                    <Label Text="Title"
+                           FontFamily="{DynamicResource AvenirMedium}" 
+                           FontSize="15"
+                           VerticalOptions="EndAndExpand"
+                           Margin="10,0,0,0"/>
+                    <StackLayout Padding="10,8,10,8"
+                                 BackgroundColor="White"
+                                 HeightRequest="25">
+                        <Frame CornerRadius="3" Padding="0" HasShadow="False"
+                               BorderColor="{Binding Source={x:Static resx:ColorResource.BorderColor}}"
+                               BackgroundColor="White">
+                            <custom:CustomEntry Text="{Binding Title}" FontFamily="{DynamicResource AvenirRoman}" VerticalTextAlignment="Center" FontSize="12" VerticalOptions="CenterAndExpand" HeightRequest="25"/>
+                        </Frame>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="Date"
+                           FontFamily="{DynamicResource AvenirMedium}" 
+                           FontSize="15" 
+                           VerticalOptions="EndAndExpand" 
+                           Margin="10,0,0,0"/>
+                    <StackLayout Spacing="1">
+                        <StackLayout x:Name="fullDay" 
+                                     Orientation="Horizontal" 
+                                     BackgroundColor="White" 
+                                     HeightRequest="25" 
+                                     Padding="10,8,10,8">
+                            <Label Text="Full Day"
+                                   FontFamily="{DynamicResource AvenirMedium}"
+                                   FontSize="14"
+                                   HorizontalOptions="StartAndExpand" VerticalOptions="Center"/>
+                            <custom:CustomSwitch IsEnabled="{Binding IsSwitchFullEnable}" IsToggled="{Binding IsFullDay}" Toggled="IsFullDayToggled" HorizontalOptions="End" VerticalOptions="Center"/>
+                        </StackLayout>
+                        <StackLayout x:Name="oneDay" 
+                                     Orientation="Horizontal" 
+                                     BackgroundColor="White" 
+                                     HeightRequest="25" 
+                                     Padding="10,8,10,8">
+                            <Label Text="One Day"
+                                   FontFamily="{DynamicResource AvenirMedium}"
+                                   FontSize="14"
+                                   HorizontalOptions="StartAndExpand" VerticalOptions="Center"/>
+                            <custom:CustomSwitch IsEnabled="{Binding IsSwitchOneEnable}" IsToggled="{Binding IsOneDay}" Toggled="IsOneDayToggled" HorizontalOptions="End" VerticalOptions="Center"/>
+                        </StackLayout>
+                        <StackLayout x:Name="startDate" 
+                                     Orientation="Horizontal" 
+                                     BackgroundColor="White" 
+                                     HeightRequest="25" 
+                                     Padding="10,8,10,8">
+                            <Label Text="Start Date"
+                                   FontFamily="{DynamicResource AvenirMedium}" 
+                                   FontSize="14"
+                                   HorizontalOptions="StartAndExpand" 
+                                   VerticalOptions="Center"/>
+                            <StackLayout HorizontalOptions="End" VerticalOptions="Center" Orientation="Horizontal">
+                                <Frame AutomationId="StartDay"
+                                       BackgroundColor="White"
+                                       BorderColor="{Binding Source={x:Static resx:ColorResource.BorderColor}}"
+                                       HeightRequest="20"
+                                       WidthRequest="120"
+                                       CornerRadius="5"
+                                       HasShadow="False"
+                                       Padding="10,3,10,3">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnCalendar" CommandParameter="{Binding .}"/>
+                                    </Frame.GestureRecognizers>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Spacing="10">
+                                        <Image Source="calendar.png" HeightRequest="15" WidthRequest="15"/>
+                                        <Label Text="{Binding StartDay}" TextColor="Black"/>
+                                    </StackLayout>
+                                </Frame>
+                                <Frame AutomationId="StartTime"
+                                       BackgroundColor="White"
+                                       BorderColor="{Binding Source={x:Static resx:ColorResource.BorderColor}}"
+                                       HeightRequest="20"
+                                       WidthRequest="80"
+                                       CornerRadius="5"
+                                       HasShadow="False"
+                                       Padding="10,3,10,3"
+                                       IsEnabled="{Binding IsEnableStartTime}">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnHour" CommandParameter="{Binding .}"/>
+                                    </Frame.GestureRecognizers>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Spacing="10">
+                                        <Image Source="clock.png" HeightRequest="15" WidthRequest="15"/>
+                                        <Label Text="{Binding StartTime}" TextColor="Black"/>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </StackLayout>
+                        
+                        <StackLayout x:Name="endDate"
+                                     Orientation="Horizontal" 
+                                     BackgroundColor="White" 
+                                     HeightRequest="25" 
+                                     Padding="10,8,10,8"
+                                     IsEnabled="{Binding IsEnableOneDay}">
+                            <Label Text="End Date"
+                                   FontFamily="{DynamicResource AvenirMedium}" 
+                                   FontSize="14" 
+                                   HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="Center"/>
+                            <StackLayout HorizontalOptions="End" VerticalOptions="Center" Orientation="Horizontal">
+                                <Frame AutomationId="EndDay"
+                                       BackgroundColor="White"
+                                       BorderColor="{Binding Source={x:Static resx:ColorResource.BorderColor}}"
+                                       HeightRequest="20"
+                                       WidthRequest="120"
+                                       CornerRadius="5"
+                                       HasShadow="False"
+                                       Padding="10,3,10,3">
+                                   <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnCalendar"/>
+                                    </Frame.GestureRecognizers>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Spacing="10">
+                                        <Image Source="calendar.png" HeightRequest="15" WidthRequest="15"/>
+                                        <Label Text="{Binding EndDay}" TextColor="Black"/>
+                                    </StackLayout>
+                                </Frame>
+                                <Frame AutomationId="EndTime"
+                                       BackgroundColor="White"
+                                       BorderColor="{Binding Source={x:Static resx:ColorResource.BorderColor}}"
+                                       HeightRequest="20"
+                                       WidthRequest="80"
+                                       CornerRadius="5"
+                                       HasShadow="False"
+                                       Padding="10,3,10,3"
+                                       IsEnabled="{Binding IsEnableEndTime}">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnHour"/>
+                                    </Frame.GestureRecognizers>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Spacing="10">
+                                        <Image Source="clock.png" HeightRequest="15" WidthRequest="15"/>
+                                        <Label Text="{Binding EndTime}" TextColor="Black"/>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout x:Name="notice">
+                    <Label Text="Notice"
+                           FontFamily="{DynamicResource AvenirMedium}" 
+                           FontSize="15" 
+                           VerticalOptions="EndAndExpand" 
+                           Margin="10,0,0,0"/>
+                    <StackLayout Orientation="Horizontal" 
+                                     BackgroundColor="White"
+                                     HeightRequest="25" 
+                                     Padding="10,8,10,8">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelectNoticeCommand}" CommandParameter="{Binding .}" />
+                        </StackLayout.GestureRecognizers>
+                        <Label Text="Notice" 
+                               FontFamily="{DynamicResource AvenirMedium}" 
+                               FontSize="14" 
+                               HorizontalOptions="StartAndExpand"
+                               VerticalOptions="Center"/>
+                        <Label Text="{Binding NoticeTitle}" HorizontalOptions="End" VerticalOptions="Center"/>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout x:Name="description">
+                    <Label Text="Description"
+                           FontFamily="{DynamicResource AvenirMedium}" 
+                           FontSize="15" 
+                           VerticalOptions="EndAndExpand" 
+                           Margin="10,0,0,0"/>
+                    <StackLayout BackgroundColor="White"
+                                 Padding="10,8,10,8">
+                        <custom:CustomEditor Text="{Binding Description}" HeightRequest="170" FontFamily="{DynamicResource AvenirMedium}" FontSize="12" />
+                    </StackLayout>
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+        
+        <StackLayout BackgroundColor="{Binding Source={x:Static resx:ColorResource.FOBlue}}"
+                     AbsoluteLayout.LayoutBounds="0, 1, 1, 0.07"
+                     AbsoluteLayout.LayoutFlags="All" >
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding OnSaveCommand}" CommandParameter="{Binding .}"/>
+            </StackLayout.GestureRecognizers>
+            <Label Text="Save" TextColor="White"
+                   FontFamily="{DynamicResource AvenirRoman}" FontSize="18"
+                   HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+        </StackLayout>
+
+    </AbsoluteLayout>
+</ContentPage>

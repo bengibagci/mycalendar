@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MyCalendar.App">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="AvenirBlack">
+                <On Platform="iOS" Value="Avenir-Black"/>
+                <On Platform="Android" Value="Avenir-Black.ttf#Avenir Black" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="AvenirBlackOblique">
+                <On Platform="iOS" Value="Avenir-BlackOblique"/>
+                <On Platform="Android" Value="Avenir-BlackOblique.ttf#Avenir BlackOblique" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="AvenirBold">
+                <On Platform="iOS" Value="Avenir-Bold"/>
+                <On Platform="Android" Value="Avenir-Bold.ttf#Avenir Bold" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="AvenirBook">
+                <On Platform="iOS" Value="Avenir-Book"/>
+                <On Platform="Android" Value="Avenir-Book.ttf#Avenir Book" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="AvenirBookOblique">
+                <On Platform="iOS" Value="Avenir-BookOblique"/>
+                <On Platform="Android" Value="Avenir-BookOblique.ttf#Avenir BookOblique" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="AvenirHeavy">
+                <On Platform="iOS" Value="Avenir-Heavy"/>
+                <On Platform="Android" Value="Avenir-Heavy.ttf#Avenir Heavy" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="AvenirHeavyOblique">
+                <On Platform="iOS" Value="Avenir-HeavyOblique"/>
+                <On Platform="Android" Value="Avenir-HeavyOblique.ttf#Avenir HeavyOblique" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="AvenirLight">
+                <On Platform="iOS" Value="Avenir-Light"/>
+                <On Platform="Android" Value="Avenir-Black.ttf#Avenir Light" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="AvenirLightOblique">
+                <On Platform="iOS" Value="Avenir-LightOblique"/>
+                <On Platform="Android" Value="Avenir-LightOblique.ttf#Avenir LightOblique" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="AvenirMedium">
+                <On Platform="iOS" Value="Avenir-Medium"/>
+                <On Platform="Android" Value="Avenir-Black.ttf#Avenir Medium" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="AvenirMediumOblique">
+                <On Platform="iOS" Value="Avenir-MediumOblique"/>
+                <On Platform="Android" Value="Avenir-Black.ttf#Avenir MediumOblique" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="AvenirOblique">
+                <On Platform="iOS" Value="Avenir-Oblique"/>
+                <On Platform="Android" Value="Avenir-Oblique.ttf#Avenir Oblique" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="AvenirRoman">
+                <On Platform="iOS" Value="Avenir-Roman"/>
+                <On Platform="Android" Value="Avenir-Roman.ttf#Avenir Roman" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="OpenSansCondBold">
+                <On Platform="iOS" Value="OpenSans-CondBold"/>
+                <On Platform="Android" Value="OpenSans-CondBold.ttf#OpenSans CondBold" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="OpenSansCondLight">
+                <On Platform="iOS" Value="OpenSans-CondLight"/>
+                <On Platform="Android" Value="OpenSans-CondLight.ttf#OpenSans CondLight" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="Fontawesome">
+                <On Platform="iOS" Value="fontawesome"/>
+                <On Platform="Android" Value="fontawesome.ttf#fontawesome" />
+            </OnPlatform>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

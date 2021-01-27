@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                 xmlns:resx="clr-namespace:MyCalendar.Resx"
+                 xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+                 xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 mc:Ignorable="d"
+                 x:Class="MyCalendar.Views.OptionsPopup"
+                 BackgroundColor="{Binding Source={x:Static resx:ColorResource.TransparentBackgroundColor}}">
+
+    <popup:PopupPage.Animation>
+        <animations:ScaleAnimation
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinIn"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </popup:PopupPage.Animation>
+
+    <AbsoluteLayout>
+        <AbsoluteLayout.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnBackgroundClick" />
+        </AbsoluteLayout.GestureRecognizers>
+
+        <StackLayout x:Name="stackLayout"
+                     Spacing="0"
+                     VerticalOptions="Center" 
+                     HorizontalOptions="Center">
+            <StackLayout x:Name="innerStackLayout" 
+                         BackgroundColor="{Binding Source={x:Static resx:ColorResource.GeneralPopupCancelBgColor}}" 
+                         Padding="5" 
+                         HeightRequest="40" 
+                         VerticalOptions="Center"/>
+
+            <flv:FlowListView FlowItemsSource="{Binding PopupItems}" 
+                              BackgroundColor="White" 
+                              SeparatorVisibility="Default"
+                              SeparatorColor="{Binding Source={x:Static resx:ColorResource.SeparatorColor}}"
+                              SelectionMode="None"
+                              HeightRequest="405"
+                              FlowColumnCount="1"
+                              FlowItemTappedCommand="{Binding OnTappedOptionCommand}">
+                <flv:FlowListView.FlowColumnTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10" VerticalOptions="End">
+                            <Label Text="{Binding Title}" TextColor="Black" FontFamily="{DynamicResource AvenirRoman}" FontSize="18"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </flv:FlowListView.FlowColumnTemplate>
+            </flv:FlowListView>
+
+            <Button x:Name="cancelBtn" Text="Cancel" FontSize="15" CornerRadius="0" TextColor="Black" Clicked="OnCancel"
+                    FontFamily="{DynamicResource AvenirMedium}" BackgroundColor="{Binding Source={x:Static resx:ColorResource.GeneralPopupCancelBgColor}}" HeightRequest="50" />
+
+        </StackLayout>
+    </AbsoluteLayout>
+
+</popup:PopupPage>

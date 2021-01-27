@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MyCalendar.Views.ReminderDetailPage"
+             xmlns:resx="clr-namespace:MyCalendar.Resx"
+             Title="Detail">
+
+    <ScrollView HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">
+        <StackLayout Padding="0,10,0,0" Spacing="10">
+
+            <StackLayout>
+                <Label Text="Title"
+                           FontFamily="{DynamicResource AvenirMedium}" 
+                           FontSize="15"
+                           VerticalOptions="EndAndExpand"
+                           Margin="10,0,0,0"/>
+                <StackLayout Padding="20,8,20,8"
+                                 BackgroundColor="White"
+                                 HeightRequest="25">
+                    <Label Text="{Binding Selected.Title}" FontFamily="{DynamicResource AvenirRoman}" VerticalTextAlignment="Center" FontSize="12" VerticalOptions="CenterAndExpand" HeightRequest="25"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout x:Name="date">
+                <Label Text="ReminderDate"
+                           FontFamily="{DynamicResource AvenirMedium}" 
+                           FontSize="15" 
+                           VerticalOptions="EndAndExpand" 
+                           Margin="10,0,0,0"/>
+                <StackLayout Orientation="Horizontal" 
+                                     BackgroundColor="White"
+                                     HeightRequest="25" 
+                                     Padding="20,8,20,8">
+                    <Label Text="{Binding Selected.ReminderDate, StringFormat='{0:dd/MM/yyyy HH:mm}'}" FontFamily="{DynamicResource AvenirRoman}" HorizontalOptions="Start" VerticalOptions="Center"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout x:Name="priority">
+                <Label Text="Priority"
+                           FontFamily="{DynamicResource AvenirMedium}" 
+                           FontSize="15" 
+                           VerticalOptions="EndAndExpand" 
+                           Margin="10,0,0,0"/>
+                <StackLayout Orientation="Horizontal" 
+                                     BackgroundColor="White"
+                                     HeightRequest="25" 
+                                     Padding="20,8,20,8">
+                    <Label Text="{Binding Selected.Priority}" FontFamily="{DynamicResource AvenirRoman}" HorizontalOptions="Start" VerticalOptions="Center"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout x:Name="note">
+                <Label Text="Note"
+                           FontFamily="{DynamicResource AvenirMedium}" 
+                           FontSize="15" 
+                           VerticalOptions="EndAndExpand" 
+                           Margin="10,0,0,0"/>
+                <StackLayout BackgroundColor="White"
+                                 Padding="20,8,20,8">
+                    <Label Text="{Binding Selected.Note}" HeightRequest="170" FontFamily="{DynamicResource AvenirRoman}" FontSize="15" />
+                </StackLayout>
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

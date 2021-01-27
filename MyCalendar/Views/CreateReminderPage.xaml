@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:custom="clr-namespace:MyCalendar.Custom"
+             xmlns:resx="clr-namespace:MyCalendar.Resx"
+             mc:Ignorable="d"
+             x:Class="MyCalendar.Views.CreateReminderPage"
+             Title="{Binding PageTitle}">
+
+    <AbsoluteLayout>
+
+        <ScrollView AbsoluteLayout.LayoutBounds="0, 0, 1, 0.93" AbsoluteLayout.LayoutFlags="All" HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">
+            <StackLayout Padding="0,10,0,0" Spacing="10">
+
+                <StackLayout x:Name="title">
+                    <Label Text="Title"
+                           FontFamily="{DynamicResource AvenirMedium}" 
+                           FontSize="15"
+                           VerticalOptions="EndAndExpand"
+                           Margin="10,0,0,0"/>
+                    <StackLayout Padding="10,8,10,8"
+                                 BackgroundColor="White"
+                                 HeightRequest="25">
+                        <Frame CornerRadius="3" Padding="0" HasShadow="False"
+                               BorderColor="{Binding Source={x:Static resx:ColorResource.BorderColor}}"
+                               BackgroundColor="White">
+                            <custom:CustomEntry Text="{Binding Title}" FontFamily="{DynamicResource AvenirRoman}" VerticalTextAlignment="Center" FontSize="12" VerticalOptions="CenterAndExpand" HeightRequest="25"/>
+                        </Frame>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout x:Name="date">
+                    <Label Text="Date"
+                           FontFamily="{DynamicResource AvenirMedium}" 
+                           FontSize="15" 
+                           VerticalOptions="EndAndExpand" 
+                           Margin="10,0,0,0"/>
+                    <StackLayout Spacing="1">
+                        <StackLayout x:Name="reminderDay" 
+                                     Orientation="Horizontal" 
+                                     BackgroundColor="White" 
+                                     HeightRequest="25" 
+                                     Padding="10,8,10,8">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer />
+                            </StackLayout.GestureRecognizers>
+                            <Label Text="Reminder Day"
+                                   FontFamily="{DynamicResource AvenirMedium}" 
+                                   FontSize="14"
+                                   HorizontalOptions="StartAndExpand" 
+                                   VerticalOptions="Center"/>
+                            <Frame AutomationId="ReminderDay"
+                                   BackgroundColor="White"
+                                   HorizontalOptions="End"
+                                   BorderColor="{Binding Source={x:Static resx:ColorResource.BorderColor}}"
+                                   HeightRequest="20"
+                                   WidthRequest="120"
+                                   CornerRadius="5"
+                                   HasShadow="False"
+                                   Padding="10,3,10,3">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnCalendar" CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Spacing="10">
+                                    <Image Source="calendar.png" HeightRequest="15" WidthRequest="15"/>
+                                    <Label Text="{Binding ReminderDay}" TextColor="Black"/>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+
+                        <StackLayout x:Name="reminderTime"
+                                     Orientation="Horizontal" 
+                                     BackgroundColor="White" 
+                                     HeightRequest="25" 
+                                     Padding="10,8,10,8">
+                            <Label Text="Reminder Time"
+                                   FontFamily="{DynamicResource AvenirMedium}" 
+                                   FontSize="14" 
+                                   HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="Center"/>
+                            <Frame AutomationId="ReminderTime"
+                                   BackgroundColor="White"
+                                   VerticalOptions="End"
+                                   BorderColor="{Binding Source={x:Static resx:ColorResource.BorderColor}}"
+                                   HeightRequest="20"
+                                   WidthRequest="80"
+                                   CornerRadius="5"
+                                   HasShadow="False"
+                                   Padding="10,3,10,3">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnHour" CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Spacing="10">
+                                    <Image Source="clock.png" HeightRequest="15" WidthRequest="15"/>
+                                    <Label Text="{Binding ReminderTime}" TextColor="Black"/>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout x:Name="Priority">
+                    <Label Text="Priority"
+                           FontFamily="{DynamicResource AvenirMedium}" 
+                           FontSize="15" 
+                           VerticalOptions="EndAndExpand" 
+                           Margin="10,0,0,0"/>
+                    <StackLayout Spacing="1">
+                        <StackLayout x:Name="none" 
+                                     Orientation="Horizontal" 
+                                     BackgroundColor="White" 
+                                     HeightRequest="25" 
+                                     Padding="10,8,10,8">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SetNoneVisibilityCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                            <Label Text="None"
+                                   FontFamily="{DynamicResource AvenirMedium}"
+                                   FontSize="14"
+                                   HorizontalOptions="StartAndExpand" VerticalOptions="Center"/>
+                            <Image  x:Name="noneTick" IsVisible="{Binding NoneVisiblity}" Source="tick.png" HorizontalOptions="End" VerticalOptions="Center"/>
+                        </StackLayout>
+                        <StackLayout x:Name="low"
+                                     Orientation="Horizontal" 
+                                     BackgroundColor="White" 
+                                     HeightRequest="25" 
+                                     Padding="10,8,10,8">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SetLowVisibilityCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                            <Label Text="Low"
+                                   FontFamily="{DynamicResource AvenirMedium}" 
+                                   FontSize="14"
+                                   HorizontalOptions="StartAndExpand" 
+                                   VerticalOptions="Center"/>
+                            <Image x:Name="lowTick" IsVisible="{Binding LowVisiblity}" Source="tick.png" HorizontalOptions="End"  VerticalOptions="Center"/>
+                        </StackLayout>
+                        <StackLayout x:Name="medium" 
+                                     Orientation="Horizontal" 
+                                     BackgroundColor="White" 
+                                     HeightRequest="25" 
+                                     Padding="10,8,10,8">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SetMediumVisibilityCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                            <Label Text="Medium"
+                                   FontFamily="{DynamicResource AvenirMedium}" 
+                                   FontSize="14" 
+                                   HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="Center"/>
+                            <Image x:Name="mediumTick" IsVisible="{Binding MediumVisiblity}" Source="tick.png" HorizontalOptions="End" VerticalOptions="Center"/>
+                        </StackLayout>
+                        <StackLayout x:Name="high" 
+                                     Orientation="Horizontal" 
+                                     BackgroundColor="White" 
+                                     HeightRequest="25" 
+                                     Padding="10,8,10,8">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SetHighVisibilityCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                            <Label Text="High"
+                                   FontFamily="{DynamicResource AvenirMedium}" 
+                                   FontSize="14" 
+                                   HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="Center"/>
+                            <Image x:Name="highTick" IsVisible="{Binding HighVisiblity}" Source="tick.png" HorizontalOptions="End" VerticalOptions="Center"/>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout x:Name="note">
+                    <Label Text="Note"
+                           FontFamily="{DynamicResource AvenirMedium}" 
+                           FontSize="15" 
+                           VerticalOptions="EndAndExpand" 
+                           Margin="10,0,0,0"/>
+                    <StackLayout BackgroundColor="White"
+                                 Padding="10,8,10,8">
+                        <custom:CustomEditor Text="{Binding Note}" HeightRequest="170" FontFamily="{DynamicResource AvenirMedium}" FontSize="12" />
+                    </StackLayout>
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+
+        <StackLayout BackgroundColor="{Binding Source={x:Static resx:ColorResource.FOBlue}}"
+                     AbsoluteLayout.LayoutBounds="0, 1, 1, 0.07"
+                     AbsoluteLayout.LayoutFlags="All" >
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding OnSaveCommand}" CommandParameter="{Binding .}"/>
+            </StackLayout.GestureRecognizers>
+            <Label Text="Save" TextColor="White"
+                   FontFamily="{DynamicResource AvenirRoman}" FontSize="18"
+                   HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+        </StackLayout>
+
+    </AbsoluteLayout>
+
+</ContentPage>
